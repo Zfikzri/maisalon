@@ -128,7 +128,7 @@ export const api = {
         return mockStylists.find(s => s.id === id) || null
     },
 
-    getTimeSlots: async (stylistId: string, date: string, durationMinutes: number): Promise<string[]> => {
+    getTimeSlots: async (_stylistId: string, _date: string, durationMinutes: number): Promise<string[]> => {
         await new Promise(resolve => setTimeout(resolve, 400))
 
         // Generate time slots from 9 AM to 6 PM
@@ -149,7 +149,7 @@ export const api = {
         }
 
         // Randomly remove some slots to simulate booked times
-        return slots.filter((_, index) => Math.random() > 0.3)
+        return slots.filter(() => Math.random() > 0.3)
     },
 
     createBooking: async (data: any): Promise<any> => {

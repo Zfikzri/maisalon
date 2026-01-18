@@ -16,7 +16,6 @@ export function BookingReview() {
     const { selectedService, selectedStylist, selectedDate, selectedTime, setCurrentStep, resetBooking } = useBookingStore()
     const [notes, setNotes] = useState('')
     const [isConfirmed, setIsConfirmed] = useState(false)
-    const [bookingId, setBookingId] = useState<string | null>(null)
 
     const createBookingMutation = useMutation({
         mutationFn: async () => {
@@ -46,8 +45,6 @@ export function BookingReview() {
             return data
         },
         onSuccess: async (booking) => {
-            setBookingId(booking.id)
-
             try {
                 // Step 2: Create payment token
                 const token = await createSnapToken({
@@ -122,7 +119,10 @@ export function BookingReview() {
                 })
                 .eq('id', id)
 
-            toast.info('Payment pending. Please complete payment to confirm your booking.')
+            toast('Payment pending. Please complete payment to confirm your booking.', {
+                icon: '⏳',
+                duration: 4000
+            })
 
             setTimeout(() => {
                 resetBooking()
@@ -133,7 +133,7 @@ export function BookingReview() {
         }
     }
 
-    const handlePaymentError = async (id: string, result: PaymentResult) => {
+    const handlePaymentError = async (id: string, _result: PaymentResult) => {
         try {
             await supabase
                 .from('bookings')
