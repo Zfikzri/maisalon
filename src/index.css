@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-light dark:bg-background-dark text-[#1a170f] dark:text-[#fdfcf0];
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .luxury-shadow {
+    box-shadow: 0 10px 30px -15px rgba(212, 175, 55, 0.15);
+  }
+  
+  .glass-nav {
+    backdrop-filter: blur(12px);
+    background-color: rgba(253, 252, 240, 0.85);
+  }
+  
+  .dark .glass-nav {
+    background-color: rgba(26, 23, 15, 0.85);
+  }
+
+  .btn-primary {
+    @apply flex cursor-pointer items-center justify-center rounded-lg px-6 py-3 bg-primary text-[#1a170f] font-bold transition-all hover:bg-accent-gold hover:-translate-y-0.5 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply flex cursor-pointer items-center justify-center rounded-lg px-6 py-3 border-2 border-primary/20 bg-transparent text-[#1a170f] dark:text-white font-bold transition-all hover:bg-primary/5;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
