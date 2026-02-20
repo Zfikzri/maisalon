@@ -42,7 +42,7 @@ export interface StyleAnalysisResult {
 export async function analyzeFaceForStyling(imageFile: File): Promise<StyleAnalysisResult> {
   try {
     // Use Gemini Pro Vision for image analysis
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-image' })
 
     // Convert image to base64 format
     const imagePart = await fileToGenerativePart(imageFile)
